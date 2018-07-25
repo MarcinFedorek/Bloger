@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class EditAppUserDto {
     private String edited_name;
     private String edited_surname;
-    private String edited_address;
+    private String edited_description;
 }

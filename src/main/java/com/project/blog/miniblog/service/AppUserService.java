@@ -6,7 +6,6 @@ import com.project.blog.miniblog.model.dto.EditAppUserDto;
 import com.project.blog.miniblog.model.dto.RegisterUserDto;
 import com.project.blog.miniblog.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,6 +40,7 @@ public class AppUserService {
         return Optional.empty();
     }
 
+
     public List<AppUserDto> getUserList() {
         List<AppUser> list = appUserRepository.findAll();
 
@@ -48,6 +48,8 @@ public class AppUserService {
                 .map(user -> AppUserDto.createDto(user))
                 .collect(Collectors.toList());
     }
+
+
 
     public Optional<AppUser> editUser(Long id, EditAppUserDto dto) {
 
@@ -60,20 +62,18 @@ public class AppUserService {
 
             user.setName(dto.getEdited_name());
             user.setSurname(dto.getEdited_surname());
+            user.setDescriptionAcount(dto.getEdited_description());
 
-            // aby zapobiec modyfikowaniu na null
+
             if (dto.getEdited_surname() != null) {
                 user.setSurname(dto.getEdited_surname());
             }
-
-            // zapisuje użytkownika - po lewej stronie przypisuje do zmiennej user
-            // użytkownika zwróconego przez bazę danych (zmodyfikowanego)
             user = appUserRepository.save(user);
 
-            // zwracam zmodyfikowany wpis
+
             return Optional.of(user);
         }
-        // jeśli nie udało się znaleźć usera, zwracamy pusty optional
+
         return Optional.empty();
     }
 
