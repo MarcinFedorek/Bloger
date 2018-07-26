@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class deletePostDto {
+public class DeletePostDto {
     private PostUser deletedPost;
 }
