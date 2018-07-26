@@ -1,4 +1,4 @@
-package com.project.blog.miniblog.model.dto;
+package com.project.blog.miniblog.model.dto.userDto;
 
 import com.project.blog.miniblog.model.AppUser.AppUser;
 import lombok.AllArgsConstructor;

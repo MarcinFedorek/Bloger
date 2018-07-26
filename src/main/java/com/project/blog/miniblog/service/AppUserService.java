@@ -1,10 +1,10 @@
 package com.project.blog.miniblog.service;
 
 import com.project.blog.miniblog.model.AppUser.AppUser;
-import com.project.blog.miniblog.model.dto.AppUserDto;
-import com.project.blog.miniblog.model.dto.EditAppUserDto;
-import com.project.blog.miniblog.model.dto.RegisterUserDto;
-import com.project.blog.miniblog.model.dto.UnregisterDto;
+import com.project.blog.miniblog.model.dto.userDto.AppUserDto;
+import com.project.blog.miniblog.model.dto.userDto.EditAppUserDto;
+import com.project.blog.miniblog.model.dto.userDto.RegisterUserDto;
+import com.project.blog.miniblog.model.dto.userDto.UnregisterDto;
 import com.project.blog.miniblog.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

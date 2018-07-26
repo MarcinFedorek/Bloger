@@ -1,7 +1,7 @@
 package com.project.blog.miniblog.controller;
 
 import com.project.blog.miniblog.model.AppUser.AppUser;
-import com.project.blog.miniblog.model.dto.*;
+import com.project.blog.miniblog.model.dto.userDto.*;
 import com.project.blog.miniblog.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
