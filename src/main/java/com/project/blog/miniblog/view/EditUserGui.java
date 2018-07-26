@@ -26,6 +26,7 @@ public class EditUserGui {
             appUser.setName(name.getValue());
             appUser.setSurname(surname.getValue());
             appUserRepository.save(appUser);
+
         });
 
 

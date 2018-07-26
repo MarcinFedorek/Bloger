@@ -8,7 +8,7 @@ import com.vaadin.ui.MenuBar;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-@SpringUI
+@SpringUI(path = "/home")
 public class HomeGui extends UI {
 
     @Autowired
@@ -37,10 +37,10 @@ public class HomeGui extends UI {
 
        // MenuBar.Command HomePage = selectedItem -> setContent(getFormWithMenuBar());
         MenuBar.Command menuCommand1 = selectedItem -> setContent(getFormWithMenuBar(registrationForm.getRegistrationForm()));
-        MenuBar.Command menuCommand2 = selectedItem -> setContent(getFormWithMenuBar(editUserGui.getEditUserForm()));
+
 
         menuBar.addItem("Zakladanie konta", menuCommand1);
-        menuBar.addItem("Edycja", menuCommand2);
+//        menuBar.addItem("Edycja", menuCommand2);
         return menuBar;
     }
 

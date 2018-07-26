@@ -19,25 +19,20 @@ public class AppUserService {
     @Autowired
     private AppUserRepository appUserRepository;
 
-
-    public Optional<AppUser> registerUser(RegisterUserDto registerUserDto) {
-        registerUserDto.setRegister_email(registerUserDto.getRegister_email().toLowerCase());
-
-
-        if (registerUserDto.getRegister_password().equals(registerUserDto.getRegister_password_confirm())) {
-
-            if (appUserRepository.countByEmail(registerUserDto.getRegister_email()) <= 0) {
-                AppUser createdUser = new AppUser(
-                        registerUserDto.getRegister_email(),
-                        registerUserDto.getRegister_password());
-
-                createdUser = appUserRepository.save(createdUser);
-
-                return Optional.of(createdUser);
+    public Long registerUser(String email, String password) {
+        if (!email.isEmpty() && !password.isEmpty()) {
+            Optional<AppUser> userByEmail = appUserRepository.findByEmail(email);
+            if (!userByEmail.isPresent()) {
+                AppUser user = new AppUser();
+                user.setEmail(email);
+                user.setPassword(password);
+                AppUser savePerson = appUserRepository.save(user);
+                return savePerson.getId();
             }
 
+
         }
-        return Optional.empty();
+        return -1L;
     }
 
 

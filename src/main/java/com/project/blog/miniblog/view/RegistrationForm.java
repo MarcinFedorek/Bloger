@@ -1,17 +1,23 @@
 package com.project.blog.miniblog.view;
 
 import com.project.blog.miniblog.model.AppUser.AppUser;
+import com.project.blog.miniblog.model.dto.userDto.RegisterUserDto;
 import com.project.blog.miniblog.repository.AppUserRepository;
+import com.project.blog.miniblog.service.AppUserService;
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class RegistrationForm {
+
     @Autowired
-    private AppUserRepository appUserRepository;
+    private AppUserService appUserService;
 
     public Layout getRegistrationForm() {
         VerticalLayout components = new VerticalLayout();
@@ -22,15 +28,22 @@ public class RegistrationForm {
         // CssLayout layout = new CssLayout();
 
 
-        registerButton.addClickListener(event -> {
-            AppUser appUser = new AppUser();
-            appUser.setEmail(email.getValue());
-            appUser.setPassword(password.getValue());
-            appUser.setName(descriptionAcount.getValue());
-
-            appUserRepository.save(appUser);
-            Notification.show("Acount created", Notification.Type.TRAY_NOTIFICATION);
-        });
+        registerButton.addClickListener(event ->
+                {
+                    Long userId = appUserService.registerUser(email.getValue(),
+                            password.getValue());
+                    if (userId > 0) {
+                        Page.getCurrent().open("/user-data?userId=" + userId, null);
+                        Notification.show(
+                                "User added",
+                                Notification.Type.TRAY_NOTIFICATION);
+                    } else {
+                        Notification.show(
+                                "Problem",
+                                Notification.Type.ERROR_MESSAGE);
+                    }
+                }
+        );
 
         components.addComponent(email);
         components.addComponent(password);
