@@ -1,8 +1,25 @@
 package com.project.blog.miniblog.view;
 
-import org.springframework.stereotype.Service;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.UI;
 
-@Service
-public class Index {
+
+@SpringUI
+public class Index extends UI {
+
+    @Override
+    protected void init(VaadinRequest vaadinRequest) {
+        HorizontalLayout layout = new HorizontalLayout();
+
+
+
+       // layout.addComponent();
+        setContent(layout);
+    }
+
 
 }

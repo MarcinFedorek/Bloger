@@ -2,6 +2,7 @@ package com.project.blog.miniblog.view;
 
 import com.project.blog.miniblog.model.AppUser.AppUser;
 import com.project.blog.miniblog.repository.AppUserRepository;
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
@@ -30,6 +31,8 @@ public class RegistrationForm {
 
             appUserRepository.save(appUser);
             Notification.show("Acount created", Notification.Type.TRAY_NOTIFICATION);
+
+            Page.getCurrent().setLocation("EditUserGui");
         });
 
         components.addComponent(email);

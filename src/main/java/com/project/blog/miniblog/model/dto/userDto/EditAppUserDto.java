@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EditAppUserDto {
+    public Long getEdited_id;
     private String edited_name;
     private String edited_surname;
     private String edited_description;
