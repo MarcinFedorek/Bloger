@@ -1,9 +1,10 @@
 package com.project.blog.miniblog.service;
 
 import com.project.blog.miniblog.model.AppUser.AppUser;
-import com.project.blog.miniblog.model.dto.AppUserDto;
-import com.project.blog.miniblog.model.dto.EditAppUserDto;
-import com.project.blog.miniblog.model.dto.RegisterUserDto;
+import com.project.blog.miniblog.model.dto.userDto.AppUserDto;
+import com.project.blog.miniblog.model.dto.userDto.EditAppUserDto;
+import com.project.blog.miniblog.model.dto.userDto.RegisterUserDto;
+import com.project.blog.miniblog.model.dto.userDto.UnregisterDto;
 import com.project.blog.miniblog.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,6 @@ public class AppUserService {
 
     @Autowired
     private AppUserRepository appUserRepository;
-
 
 
     public Optional<AppUser> registerUser(RegisterUserDto registerUserDto) {
@@ -50,7 +50,6 @@ public class AppUserService {
     }
 
 
-
     public Optional<AppUser> editUser(Long id, EditAppUserDto dto) {
 
         Optional<AppUser> searchedUser = appUserRepository.findById(id);
@@ -77,4 +76,27 @@ public class AppUserService {
         return Optional.empty();
     }
 
+    public Optional<AppUser> unregister(Long id, UnregisterDto dto) {
+
+        if (id != null) {
+
+            Optional<AppUser> searchedUser = appUserRepository.findById(id);
+            if (searchedUser.isPresent()) {
+                AppUser user = searchedUser.get();
+
+
+                if (user.getPassword().equals(dto.getUnregister_password()) &&
+                        user.getEmail().equals(dto.getUnregister_email())) {
+
+
+                    appUserRepository.delete(user);
+
+
+                    return Optional.of(user);
+                }
+            }
+        }
+        return Optional.empty();
+
+    }
 }
