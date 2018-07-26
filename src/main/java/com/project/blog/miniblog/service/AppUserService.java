@@ -3,7 +3,6 @@ package com.project.blog.miniblog.service;
 import com.project.blog.miniblog.model.AppUser.AppUser;
 import com.project.blog.miniblog.model.dto.userDto.AppUserDto;
 import com.project.blog.miniblog.model.dto.userDto.EditAppUserDto;
-import com.project.blog.miniblog.model.dto.userDto.RegisterUserDto;
 import com.project.blog.miniblog.model.dto.userDto.UnregisterDto;
 import com.project.blog.miniblog.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,31 +44,45 @@ public class AppUserService {
     }
 
 
-    public Optional<AppUser> editUser(Long id, EditAppUserDto dto) {
+    public Long editUser(String name, String surname, String description){
+        if (!name.isEmpty()&& !surname.isEmpty()){
+            AppUser user = new AppUser();
+            user.setName(name);
+            user.setSurname(surname);
+            user.setDescriptionAcount(description);
 
-        Optional<AppUser> searchedUser = appUserRepository.findById(id);
-
-        if (searchedUser.isPresent()) {
-
-            AppUser user = searchedUser.get();
-
-
-            user.setName(dto.getEdited_name());
-            user.setSurname(dto.getEdited_surname());
-            user.setDescriptionAcount(dto.getEdited_description());
-
-
-            if (dto.getEdited_surname() != null) {
-                user.setSurname(dto.getEdited_surname());
-            }
-            user = appUserRepository.save(user);
-
-
-            return Optional.of(user);
+            appUserRepository.save(user);
+            return user.getId();
         }
-
-        return Optional.empty();
+        return -1L;
     }
+
+
+//    public Optional<AppUser> editUser(Long id, EditAppUserDto dto) {
+//
+//        Optional<AppUser> searchedUser = appUserRepository.findById(id);
+//
+//        if (searchedUser.isPresent()) {
+//
+//            AppUser user = searchedUser.get();
+//
+//
+//            user.setName(dto.getEdited_name());
+//            user.setSurname(dto.getEdited_surname());
+//            user.setDescriptionAcount(dto.getEdited_description());
+//
+//
+//            if (dto.getEdited_surname() != null) {
+//                user.setSurname(dto.getEdited_surname());
+//            }
+//            user = appUserRepository.save(user);
+//
+//
+//            return Optional.of(user);
+//        }
+//
+//        return Optional.empty();
+//    }
 
     public Optional<AppUser> unregister(Long id, UnregisterDto dto) {
 
