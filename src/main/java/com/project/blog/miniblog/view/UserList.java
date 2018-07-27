@@ -37,7 +37,6 @@ public class UserList extends UI {
 
         ListDataProvider<AppUser> dataProvider = new ListDataProvider<>(appUserService.getUserList());
         Grid<AppUser> grid = new Grid<>();
-        Button button = new Button();
         grid.setDataProvider(dataProvider);
         grid.addColumn(AppUser::getId).setId("Id").setCaption("Id");
         grid.addColumn(AppUser::getName).setId("Name").setCaption("Name");
@@ -47,7 +46,8 @@ public class UserList extends UI {
 
 
         Button buttonRemove = new Button("Remove");
-        buttonRemove.addStyleName("Remove");
+        //todo narazie nie działa trzeba to zrobić usuwanie!! ;p
+        //data provider jest do odswieżenia widoku
         buttonRemove.addClickListener(event -> {
             Set<AppUser> selectedItems = grid.getSelectedItems();
             for (AppUser selectedItem : selectedItems) {
@@ -57,7 +57,7 @@ public class UserList extends UI {
         });
 
         layout.addComponent(grid);
-layout.addComponent(button);
+layout.addComponent(buttonRemove);
         setContent(layout);
 
 
