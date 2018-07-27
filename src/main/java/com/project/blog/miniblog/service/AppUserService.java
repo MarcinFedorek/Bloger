@@ -46,7 +46,8 @@ public class AppUserService {
 
 
     public Long editUser(String name, String surname, String description){
-        if (!name.isEmpty()&& !surname.isEmpty()){
+
+        if (!name.isEmpty() && !surname.isEmpty()){
             AppUser user = new AppUser();
             user.setName(name);
             user.setSurname(surname);

@@ -6,5 +6,6 @@ public interface IndexUri {
     String logged = "/logged";
     String home = "/";
     String userList = "/userlist";
+    String editUser = "/editUser";
 
 }

@@ -1,6 +1,5 @@
 package com.project.blog.miniblog.view;
 
-import com.project.blog.miniblog.model.AppUser.AppUser;
 import com.project.blog.miniblog.repository.AppUserRepository;
 import com.project.blog.miniblog.service.AppUserService;
 import com.vaadin.server.Page;
@@ -16,8 +15,6 @@ public class RegistrationGui extends UI {
     @Autowired
     private Navigation navigation;
 
-    @Autowired
-    private AppUserRepository appUserRepository;
 
     @Autowired
     private AppUserService appUserService;
@@ -37,7 +34,7 @@ public class RegistrationGui extends UI {
             Long userId = appUserService.registerUser(email.getValue(),
                     password.getValue(),name.getValue());
             if (userId > 0) {
-                Page.getCurrent().open( IndexUri.logged, null);
+                Page.getCurrent().open( IndexUri.logged+userId, null);
                 Notification.show(
                         "User added",
                         Notification.Type.TRAY_NOTIFICATION);

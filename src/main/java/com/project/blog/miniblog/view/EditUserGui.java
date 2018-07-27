@@ -1,40 +1,70 @@
 package com.project.blog.miniblog.view;
 
+
 import com.project.blog.miniblog.model.AppUser.AppUser;
 import com.project.blog.miniblog.repository.AppUserRepository;
+import com.project.blog.miniblog.service.AppUserService;
+import com.vaadin.server.Page;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class EditUserGui {
+
+@SpringUI(path = IndexUri.editUser)
+public class EditUserGui extends UI {
+
+    @Autowired
+    private LoggedNav loggedNav;
+
+    @Autowired
+    private AppUserService appUserService;
 
     @Autowired
     private AppUserRepository appUserRepository;
 
-
-    public Layout getEditUserForm() {
+    @Override
+    protected void init(VaadinRequest vaadinRequest) {
         VerticalLayout components = new VerticalLayout();
-        TextField descriptionAcount = new TextField("Acount name");
         TextField name = new TextField("Your Name");
         TextField surname = new TextField("Your Surname");
+        TextField descriptionAcount = new TextField("Acount name");
         Button updateButton = new Button("Update");
 
         updateButton.addClickListener(clickEvent -> {
-            AppUser appUser = new AppUser();
-            appUser.setDescriptionAcount(descriptionAcount.getValue());
-            appUser.setName(name.getValue());
-            appUser.setSurname(surname.getValue());
-            appUserRepository.save(appUser);
+            AppUser user = new AppUser();
+//            appUserService.editUser(name.getValue(),
+//                    surname.getValue(),
+//                    descriptionAcount.getValue());
+
+//            if(appUserRepository.findById(user.getId()).{
+//
+//            }
+
+
+
+
+
+
+
+
+            Notification.show("Edited Account", Notification.Type.TRAY_NOTIFICATION);
+            Page.getCurrent().setLocation(IndexUri.logged);
+
 
         });
 
-
-        components.addComponent(descriptionAcount);
+        components.addComponent(loggedNav.navBar());
         components.addComponent(name);
         components.addComponent(surname);
+        components.addComponent(descriptionAcount);
         components.addComponent(updateButton);
 
-        return (components);
+
+        setContent(components);
+
+
     }
 }
+
+

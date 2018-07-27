@@ -30,11 +30,18 @@ public class LoggedNav {
         Link link3 = new Link("Add text", new ExternalResource("/add_text"));
 
 
+        Label editLabel = new Label();
+        postLabel.setStyleName("edit");
+        Link link4 = new Link("Edit My Account", new ExternalResource(IndexUri.editUser));
+
+
         menulayout.addComponent(indexLabel);
         menulayout.addComponent(usersLabel);
         menulayout.addComponent(postLabel);
+        menulayout.addComponent(editLabel);
         menulayout.addComponent(link1);
         menulayout.addComponent(link2);
         menulayout.addComponent(link3);
+        menulayout.addComponentsAndExpand(link4);
         return menulayout;
 }}
