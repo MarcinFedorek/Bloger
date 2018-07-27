@@ -12,7 +12,7 @@ import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-@SpringUI(path = IndexUri.editUser)
+@SpringUI(path = IndexUri.editUser+"userId")
 public class EditUserGui extends UI {
 
     @Autowired
@@ -32,10 +32,10 @@ public class EditUserGui extends UI {
         TextField descriptionAcount = new TextField("Acount name");
         Button updateButton = new Button("Update");
 
-        Long userId = Long.parseLong(vaadinRequest.getParameter(IndexUri.editUser+"userId"));
-//        AppUser personById = appUserService.getPersonById(userId);
         updateButton.addClickListener(clickEvent -> {
 
+        Long userId = Long.parseLong(vaadinRequest.getParameter(IndexUri.editUser+"userId"));
+        AppUser personById = appUserService.getPersonById(userId);
                     boolean updateComplete = appUserService.editUser(userId, name.getValue(), surname.getValue(),
                             descriptionAcount.getValue());
                     if (updateComplete) {
