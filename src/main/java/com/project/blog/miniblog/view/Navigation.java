@@ -1,18 +1,17 @@
 package com.project.blog.miniblog.view;
 
 import com.vaadin.server.ExternalResource;
-import com.vaadin.server.VaadinRequest;
-import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
-import com.vaadin.ui.UI;
 
-@SpringUI(path = "index")
-public class Index extends UI {
+import org.springframework.stereotype.Service;
 
-    @Override
-    protected void init(VaadinRequest vaadinRequest) {
+@Service
+public class Navigation {
+
+
+    public HorizontalLayout navBar() {
         HorizontalLayout menulayout = new HorizontalLayout();
         menulayout.setMargin(true);
         menulayout.setSpacing(true);
@@ -22,11 +21,11 @@ public class Index extends UI {
 
         Label indexLabel = new Label();
         indexLabel.setStyleName("link");
-        Link link1 = new Link("Home",new ExternalResource("/index"));
+        Link link1 = new Link("Home", new ExternalResource(IndexUri.home));
 
         Label usersLabel = new Label();
         usersLabel.setStyleName("link");
-        Link link2 = new Link("Users List",new ExternalResource("/users_list"));
+        Link link2 = new Link("Users List", new ExternalResource("/userlist"));
 
 
         Label postLabel = new Label();
@@ -35,12 +34,11 @@ public class Index extends UI {
 
         Label registrationLabel = new Label();
         registrationLabel.setStyleName("link");
-       Link link4 = new Link("Register",new ExternalResource("/registrationForm"));
+        Link link4 = new Link("Register", new ExternalResource("/register"));
 
         Label loginLabel = new Label();
         loginLabel.setStyleName("link");
-        Link link5 = new Link("Sing in",new ExternalResource("/Sing_in"));
-
+        Link link5 = new Link("Sing in", new ExternalResource(IndexUri.register));
 
 
         menulayout.addComponent(indexLabel);
@@ -53,7 +51,7 @@ public class Index extends UI {
         menulayout.addComponent(link3);
         menulayout.addComponent(link4);
         menulayout.addComponent(link5);
-        setContent(menulayout);
+        return menulayout;
     }
 
 

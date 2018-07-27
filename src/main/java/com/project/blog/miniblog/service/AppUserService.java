@@ -19,13 +19,14 @@ public class AppUserService {
     @Autowired
     private AppUserRepository appUserRepository;
 
-    public Long registerUser(String email, String password) {
+    public Long registerUser(String email, String password, String name) {
         if (!email.isEmpty() && !password.isEmpty()) {
             Optional<AppUser> userByEmail = appUserRepository.findByEmail(email);
             if (!userByEmail.isPresent()) {
                 AppUser user = new AppUser();
                 user.setEmail(email);
                 user.setPassword(password);
+                user.setName(name);
                 AppUser savePerson = appUserRepository.save(user);
                 return savePerson.getId();
             }
