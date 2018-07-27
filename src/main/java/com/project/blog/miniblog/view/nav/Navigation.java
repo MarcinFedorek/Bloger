@@ -1,5 +1,6 @@
-package com.project.blog.miniblog.view;
+package com.project.blog.miniblog.view.nav;
 
+import com.project.blog.miniblog.view.IndexUri;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;

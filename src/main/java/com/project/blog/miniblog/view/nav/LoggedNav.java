@@ -1,5 +1,6 @@
-package com.project.blog.miniblog.view;
+package com.project.blog.miniblog.view.nav;
 
+import com.project.blog.miniblog.view.IndexUri;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -18,16 +19,16 @@ public class LoggedNav {
 
         Label indexLabel = new Label();
         indexLabel.setStyleName("link");
-        Link link1 = new Link("Home", new ExternalResource("/index"));
+        Link link1 = new Link("Home", new ExternalResource(IndexUri.home));
 
         Label usersLabel = new Label();
         usersLabel.setStyleName("link");
-        Link link2 = new Link("Users List", new ExternalResource("/list_users"));
+        Link link2 = new Link("User List", new ExternalResource(IndexUri.userList));
 
 
         Label postLabel = new Label();
         postLabel.setStyleName("link");
-        Link link3 = new Link("Add text", new ExternalResource("/add_text"));
+        Link link3 = new Link("Add text", new ExternalResource(IndexUri.addtext));
 
 
         menulayout.addComponent(indexLabel);
