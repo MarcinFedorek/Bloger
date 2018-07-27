@@ -6,11 +6,14 @@ import com.project.blog.miniblog.view.nav.LoggedNav;
 import com.vaadin.data.provider.ListDataProvider;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.UI;
 
 import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Set;
 
 @SpringUI(path = IndexUri.userList)
 public class UserList extends UI {
@@ -27,14 +30,34 @@ public class UserList extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         VerticalLayout layout = new VerticalLayout();
-        layout.addComponent(loggedNav.navBar());
+
+        String userId = vaadinRequest.getParameter("userId");
+        layout.addComponent(loggedNav.navBar("?userId=" + userId));
+
+
         ListDataProvider<AppUser> dataProvider = new ListDataProvider<>(appUserService.getUserList());
         Grid<AppUser> grid = new Grid<>();
+        Button button = new Button();
         grid.setDataProvider(dataProvider);
+        grid.addColumn(AppUser::getId).setId("Id").setCaption("Id");
         grid.addColumn(AppUser::getName).setId("Name").setCaption("Name");
         grid.addColumn(AppUser::getEmail).setId("Email").setCaption("Email");
-        layout.addComponent(grid);
+        grid.addColumn(AppUser::getSurname).setId("Surname").setCaption("Surname");
+        grid.addColumn(AppUser::getAccountStatus).setId("Status").setCaption("Status");
 
+
+        Button buttonRemove = new Button("Remove");
+        buttonRemove.addStyleName("Remove");
+        buttonRemove.addClickListener(event -> {
+            Set<AppUser> selectedItems = grid.getSelectedItems();
+            for (AppUser selectedItem : selectedItems) {
+                appUserService.unregister(selectedItem.getId());
+            }
+            grid.setDataProvider(dataProvider);
+        });
+
+        layout.addComponent(grid);
+layout.addComponent(button);
         setContent(layout);
 
 

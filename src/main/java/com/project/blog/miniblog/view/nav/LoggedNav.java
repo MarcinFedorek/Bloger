@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LoggedNav {
-    public HorizontalLayout navBar() {
+    public HorizontalLayout navBar(String userId) {
         HorizontalLayout menulayout = new HorizontalLayout();
         menulayout.setMargin(true);
         menulayout.setSpacing(true);
@@ -19,21 +19,21 @@ public class LoggedNav {
 
         Label indexLabel = new Label();
         indexLabel.setStyleName("link");
-        Link link1 = new Link("Home", new ExternalResource(IndexUri.home));
+        Link link1 = new Link("Home", new ExternalResource(IndexUri.home + userId));
 
         Label usersLabel = new Label();
         usersLabel.setStyleName("link");
-        Link link2 = new Link("User List", new ExternalResource(IndexUri.userList));
+        Link link2 = new Link("User List", new ExternalResource(IndexUri.userList+ userId));
 
 
         Label postLabel = new Label();
         postLabel.setStyleName("link");
-        Link link3 = new Link("Add text", new ExternalResource(IndexUri.addText));
+        Link link3 = new Link("Add text", new ExternalResource(IndexUri.addText+ userId));
 
 
         Label editLabel = new Label();
         postLabel.setStyleName("edit");
-        Link link4 = new Link("Edit My Account", new ExternalResource(IndexUri.editUser));
+        Link link4 = new Link("Edit My Account", new ExternalResource(IndexUri.editUser+ userId));
 
 
         menulayout.addComponent(indexLabel);

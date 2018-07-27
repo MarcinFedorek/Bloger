@@ -40,9 +40,9 @@ public class AppUserService {
     }
 
 
-    public boolean editUser(Long id,String name, String surname, String description){
+    public boolean editUser(Long id, String name, String surname, String description) {
 
-        if (!name.isEmpty() && !surname.isEmpty() && !description.isEmpty()){
+        if (!name.isEmpty() && !surname.isEmpty() && !description.isEmpty()) {
             AppUser user = appUserRepository.findById(id).get();
             user.setName(name);
             user.setSurname(surname);
@@ -81,7 +81,7 @@ public class AppUserService {
 //        return Optional.empty();
 //    }
 
-    public Optional<AppUser> unregister(Long id, UnregisterDto dto) {
+    public Optional<AppUser> unregister(Long id) {
 
         if (id != null) {
 
@@ -90,20 +90,15 @@ public class AppUserService {
                 AppUser user = searchedUser.get();
 
 
-                if (user.getPassword().equals(dto.getUnregister_password()) &&
-                        user.getEmail().equals(dto.getUnregister_email())) {
+                appUserRepository.delete(user);
 
 
-                    appUserRepository.delete(user);
-
-
-                    return Optional.of(user);
-                }
+                return Optional.of(user);
             }
         }
         return Optional.empty();
-
     }
+
 
     public AppUser getPersonById(Long id) {
         return appUserRepository.findById(id).get();

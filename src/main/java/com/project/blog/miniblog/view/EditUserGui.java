@@ -32,8 +32,8 @@ public class EditUserGui extends UI {
         TextField descriptionAcount = new TextField("Acount name");
         Button updateButton = new Button("Update");
 
-        Long userId = Long.parseLong(vaadinRequest.getParameter(IndexUri.editUser+"userId"));
-//        AppUser personById = appUserService.getPersonById(userId);
+        Long userId = Long.parseLong(vaadinRequest.getParameter("userId"));
+        AppUser personById = appUserService.getPersonById(userId);
         updateButton.addClickListener(clickEvent -> {
 
                     boolean updateComplete = appUserService.editUser(userId, name.getValue(), surname.getValue(),
@@ -44,21 +44,13 @@ public class EditUserGui extends UI {
                         Notification.show("Problem :(", Notification.Type.ERROR_MESSAGE);
                     }
 
-
-
-
-
-
-
-
-
             Notification.show("Edited Account", Notification.Type.TRAY_NOTIFICATION);
             Page.getCurrent().setLocation(IndexUri.logged);
 
 
         });
 
-        components.addComponent(loggedNav.navBar());
+        components.addComponent(loggedNav.navBar("?userId=" + userId));
         components.addComponent(name);
         components.addComponent(surname);
         components.addComponent(descriptionAcount);

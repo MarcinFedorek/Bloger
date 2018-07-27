@@ -19,8 +19,11 @@ public class UserPageGui extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+
+        String userId = vaadinRequest.getParameter("userId");
+
         VerticalLayout components = new VerticalLayout();
-        components.addComponent(loggedNav.navBar());
+        components.addComponent(loggedNav.navBar("?userId=" + userId));
 
 
 
