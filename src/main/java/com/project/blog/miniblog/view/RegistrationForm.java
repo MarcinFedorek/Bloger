@@ -1,17 +1,13 @@
 package com.project.blog.miniblog.view;
 
-import com.project.blog.miniblog.model.AppUser.AppUser;
-import com.project.blog.miniblog.model.dto.userDto.RegisterUserDto;
-import com.project.blog.miniblog.repository.AppUserRepository;
+
 import com.project.blog.miniblog.service.AppUserService;
 import com.vaadin.server.Page;
-import com.vaadin.server.VaadinRequest;
-import com.vaadin.spring.annotation.SpringUI;
+
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class RegistrationForm {
