@@ -35,7 +35,7 @@ public class RegistrationGui extends UI {
             Long userId = appUserService.registerUser(email.getValue(),
                     password.getValue(),name.getValue());
             if (userId > 0) {
-                Page.getCurrent().open( IndexUri.logged+userId, null);
+                Page.getCurrent().open( IndexUri.logged+userId,null);
                 Notification.show(
                         "User added",
                         Notification.Type.TRAY_NOTIFICATION);

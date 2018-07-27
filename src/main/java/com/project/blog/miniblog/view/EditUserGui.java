@@ -32,15 +32,18 @@ public class EditUserGui extends UI {
         TextField descriptionAcount = new TextField("Acount name");
         Button updateButton = new Button("Update");
 
+        Long userId = Long.parseLong(vaadinRequest.getParameter(IndexUri.editUser+"userId"));
+//        AppUser personById = appUserService.getPersonById(userId);
         updateButton.addClickListener(clickEvent -> {
-            AppUser user = new AppUser();
-//            appUserService.editUser(name.getValue(),
-//                    surname.getValue(),
-//                    descriptionAcount.getValue());
 
-//            if(appUserRepository.findById(user.getId()).{
-//
-//            }
+                    boolean updateComplete = appUserService.editUser(userId, name.getValue(), surname.getValue(),
+                            descriptionAcount.getValue());
+                    if (updateComplete) {
+                        Notification.show("Update complete", Notification.Type.TRAY_NOTIFICATION);
+                    } else {
+                        Notification.show("Problem :(", Notification.Type.ERROR_MESSAGE);
+                    }
+
 
 
 

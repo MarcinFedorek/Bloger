@@ -40,18 +40,18 @@ public class AppUserService {
     }
 
 
-    public Long editUser(String name, String surname, String description){
+    public boolean editUser(Long id,String name, String surname, String description){
 
-        if (!name.isEmpty() && !surname.isEmpty()){
-            AppUser user = new AppUser();
+        if (!name.isEmpty() && !surname.isEmpty() && !description.isEmpty()){
+            AppUser user = appUserRepository.findById(id).get();
             user.setName(name);
             user.setSurname(surname);
             user.setDescriptionAcount(description);
 
             appUserRepository.save(user);
-            return user.getId();
+            return true;
         }
-        return -1L;
+        return false;
     }
 
 
@@ -103,5 +103,9 @@ public class AppUserService {
         }
         return Optional.empty();
 
+    }
+
+    public AppUser getPersonById(Long id) {
+        return appUserRepository.findById(id).get();
     }
 }
