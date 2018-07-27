@@ -1,6 +1,6 @@
 package com.project.blog.miniblog.view;
 
-import com.vaadin.server.Sizeable;
+import com.project.blog.miniblog.view.nav.Navigation;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
@@ -16,8 +16,22 @@ public class HomeGui extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-HorizontalLayout layout = new HorizontalLayout();
+VerticalLayout layout = new VerticalLayout();
 layout.addComponent(navigation.navBar());
+
+
+        Panel panel = new Panel("Czy się zajmujemy");
+        panel.setHeight(100.0f, Unit.PERCENTAGE);
+
+        final VerticalLayout contentLayout = new VerticalLayout();
+        contentLayout.setWidth(500, Unit.PIXELS);
+        contentLayout.setSpacing(false);
+        contentLayout.addComponent(new Label("JHBFLJFBA;IDN'IONGVDGN'WRSKN"));
+
+        panel.setContent(contentLayout);
+layout.addComponent(panel);
+
+
 setContent(layout);
 
 

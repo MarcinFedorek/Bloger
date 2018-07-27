@@ -1,7 +1,6 @@
 package com.project.blog.miniblog.service;
 
 import com.project.blog.miniblog.model.AppUser.AppUser;
-import com.project.blog.miniblog.model.dto.userDto.AppUserDto;
 import com.project.blog.miniblog.model.dto.userDto.EditAppUserDto;
 import com.project.blog.miniblog.model.dto.userDto.UnregisterDto;
 import com.project.blog.miniblog.repository.AppUserRepository;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class AppUserService {
@@ -36,12 +34,9 @@ public class AppUserService {
     }
 
 
-    public List<AppUserDto> getUserList() {
-        List<AppUser> list = appUserRepository.findAll();
+    public List<AppUser> getUserList() {
+        return appUserRepository.findAll();
 
-        return list.stream()
-                .map(user -> AppUserDto.createDto(user))
-                .collect(Collectors.toList());
     }
 
 

@@ -1,16 +1,14 @@
-package com.project.blog.miniblog.view;
+package com.project.blog.miniblog.view.nav;
 
+import com.project.blog.miniblog.view.IndexUri;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
-
 import org.springframework.stereotype.Service;
 
 @Service
-public class Navigation {
-
-
+public class LoggedNav {
     public HorizontalLayout navBar() {
         HorizontalLayout menulayout = new HorizontalLayout();
         menulayout.setMargin(true);
@@ -25,34 +23,26 @@ public class Navigation {
 
         Label usersLabel = new Label();
         usersLabel.setStyleName("link");
-        Link link2 = new Link("Users List", new ExternalResource("/userlist"));
+        Link link2 = new Link("User List", new ExternalResource(IndexUri.userList));
 
 
         Label postLabel = new Label();
         postLabel.setStyleName("link");
-        Link link3 = new Link("Post List", new ExternalResource("/post_list"));
+        Link link3 = new Link("Add text", new ExternalResource(IndexUri.addtext));
 
-        Label registrationLabel = new Label();
-        registrationLabel.setStyleName("link");
-        Link link4 = new Link("Register", new ExternalResource("/register"));
 
-        Label loginLabel = new Label();
-        loginLabel.setStyleName("link");
-        Link link5 = new Link("Sing in", new ExternalResource(IndexUri.register));
+        Label editLabel = new Label();
+        postLabel.setStyleName("edit");
+        Link link4 = new Link("Edit My Account", new ExternalResource(IndexUri.editUser));
 
 
         menulayout.addComponent(indexLabel);
         menulayout.addComponent(usersLabel);
         menulayout.addComponent(postLabel);
-        menulayout.addComponent(registrationLabel);
-        menulayout.addComponent(loginLabel);
+        menulayout.addComponent(editLabel);
         menulayout.addComponent(link1);
         menulayout.addComponent(link2);
         menulayout.addComponent(link3);
-        menulayout.addComponent(link4);
-        menulayout.addComponent(link5);
+        menulayout.addComponentsAndExpand(link4);
         return menulayout;
-    }
-
-
-}
+}}
