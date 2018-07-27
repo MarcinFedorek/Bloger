@@ -28,7 +28,7 @@ public class LoggedNav {
 
         Label postLabel = new Label();
         postLabel.setStyleName("link");
-        Link link3 = new Link("Add text", new ExternalResource(IndexUri.addtext));
+        Link link3 = new Link("Add text", new ExternalResource(IndexUri.addText));
 
 
         Label editLabel = new Label();
