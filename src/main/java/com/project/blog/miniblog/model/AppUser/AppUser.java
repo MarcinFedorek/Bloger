@@ -30,8 +30,9 @@ public class AppUser {
     public AppUser() {
     }
 
-    public AppUser(String email, String password) {
+    public AppUser(String email, String password, String name) {
         this.email = email;
         this.password = password;
+        this.name = name;
     }
 }
