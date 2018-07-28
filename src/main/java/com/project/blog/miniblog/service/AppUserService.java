@@ -100,7 +100,11 @@ public class AppUserService {
     }
 
 
-    public AppUser getPersonById(Long id) {
+    public AppUser getPersonByEmail(String email) {
+        return appUserRepository.findByEmail(email).get();
+    }
+
+    public AppUser getPersonById(Long id){
         return appUserRepository.findById(id).get();
     }
 }

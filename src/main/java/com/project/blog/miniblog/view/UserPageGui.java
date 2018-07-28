@@ -8,7 +8,7 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@SpringUI(path = IndexUri.logged)
+@SpringUI(path = IndexUri.user)
 public class UserPageGui extends UI {
 
     @Autowired
@@ -23,7 +23,7 @@ public class UserPageGui extends UI {
         String userId = vaadinRequest.getParameter("userId");
 
         VerticalLayout components = new VerticalLayout();
-        components.addComponent(loggedNav.navBar("?userId=" + userId));
+//        components.addComponent(loggedNav.navBar("?userId=" + userId));
 
 
 

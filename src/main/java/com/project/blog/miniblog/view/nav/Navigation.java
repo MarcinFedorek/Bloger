@@ -31,7 +31,7 @@ public class Navigation {
 
         Label postLabel = new Label();
         postLabel.setStyleName("link");
-        Link link3 = new Link("Post List", new ExternalResource("/post_list"));
+        Link link3 = new Link("Log in", new ExternalResource(IndexUri.logged));
 
         Label registrationLabel = new Label();
         registrationLabel.setStyleName("link");

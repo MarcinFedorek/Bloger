@@ -21,8 +21,7 @@ public class EditUserGui extends UI {
     @Autowired
     private AppUserService appUserService;
 
-    @Autowired
-    private AppUserRepository appUserRepository;
+
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
