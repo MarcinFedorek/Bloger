@@ -1,15 +1,17 @@
 package com.project.blog.miniblog.model.AppUser;
 
+import com.project.blog.miniblog.model.postUser.PostUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
-
+@Data
 public class AppUser {
 
     @Id
@@ -27,6 +29,18 @@ public class AppUser {
     private LocalDate dateOfCreateAcount;
     private AccountStatus accountStatus;
     private TypeOfAccount typeOfAccount;
+
+    public List<PostUser> getPostUsers() {
+        return postUsers;
+    }
+
+    public void setPostUsers(List<PostUser> postUsers) {
+        this.postUsers = postUsers;
+    }
+
+    @OneToMany
+    @JoinColumn(name = "user_posts")
+    private List<PostUser>postUsers;
 
     public AppUser() {
     }

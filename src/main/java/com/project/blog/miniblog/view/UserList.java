@@ -56,7 +56,8 @@ public class UserList extends UI {
             grid.setDataProvider(dataProvider);
             Page.getCurrent().open(IndexUri.userList + "?userId=" + userId, null);
         });
-        layout.addComponent(wallGui.getvLayout());
+        //dodac to logged page
+        layout.addComponent(wallGui.getLayout());
         layout.addComponent(grid);
         layout.addComponent(buttonRemove);
         setContent(layout);

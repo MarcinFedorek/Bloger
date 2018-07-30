@@ -41,7 +41,7 @@ public class LoginGui extends UI {
                         if (user.get().getPassword().equals(password.getValue())) {
                             Notification.show("Hello " + user.get().getName(), Notification.Type.TRAY_NOTIFICATION);
                            // Page.getCurrent().open("?userId=" + user.get().getId(), null);
-                            Page.getCurrent().open( IndexUri.loggetPage+ "?userId=" + user.get().getId(),null);
+                            Page.getCurrent().open( IndexUri.LOGGEDPAGE + "?userId=" + user.get().getId(),null);
 
                         } else {
                             Notification.show("Incorrect password!", Notification.Type.ERROR_MESSAGE);

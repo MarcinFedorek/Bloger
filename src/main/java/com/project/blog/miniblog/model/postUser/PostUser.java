@@ -1,15 +1,15 @@
 package com.project.blog.miniblog.model.postUser;
 
+import com.project.blog.miniblog.model.AppUser.AppUser;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
+@AllArgsConstructor
 public class PostUser {
 
     @Id
@@ -21,6 +21,17 @@ public class PostUser {
     private String text;
     private LocalDateTime localDateTime = LocalDateTime.now();
     private PostStatus postStatus;
+
+    public AppUser getUser() {
+        return user;
+    }
+
+    public void setUser(AppUser user) {
+        this.user = user;
+    }
+
+    @ManyToOne
+    private AppUser user;
 
 
     public PostUser() {
