@@ -16,8 +16,8 @@ public class HomeGui extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-VerticalLayout layout = new VerticalLayout();
-layout.addComponent(navigation.navBar());
+        VerticalLayout layout = new VerticalLayout();
+        layout.addComponent(navigation.navBar());
 
 
         Panel panel = new Panel("Czy się zajmujemy");

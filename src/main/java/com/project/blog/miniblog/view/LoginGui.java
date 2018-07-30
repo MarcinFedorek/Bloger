@@ -6,6 +6,8 @@ import com.project.blog.miniblog.service.AppUserService;
 import com.project.blog.miniblog.view.nav.Navigation;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinServlet;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,7 @@ public class LoginGui extends UI {
 
     @Autowired
     private Navigation navigation;
-    @Autowired
-    private AppUserRepository appUserRepository;
+
 
 
     @Override
@@ -37,7 +38,7 @@ public class LoginGui extends UI {
                 if (user.get().getPassword().equals(password.getValue())) {
 
                     Notification.show("Hello " + user.get().getName(), Notification.Type.TRAY_NOTIFICATION);
-                    Page.getCurrent().open("/user-data?userId=" + user.get().getId(), null);
+                    Page.getCurrent().open("/user_logged=" + user.get().getId(), null);
 
                 } else {
                     Notification.show("Incorrect password!", Notification.Type.ERROR_MESSAGE);
