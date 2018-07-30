@@ -35,13 +35,13 @@ public class EditUserGui extends UI {
         AppUser personById = appUserService.getPersonById(userId);
         updateButton.addClickListener(clickEvent -> {
 
-                    boolean updateComplete = appUserService.editUser(userId, name.getValue(), surname.getValue(),
-                            descriptionAcount.getValue());
-                    if (updateComplete) {
-                        Notification.show("Update complete", Notification.Type.TRAY_NOTIFICATION);
-                    } else {
-                        Notification.show("Problem :(", Notification.Type.ERROR_MESSAGE);
-                    }
+            boolean updateComplete = appUserService.editUser(userId, name.getValue(), surname.getValue(),
+                    descriptionAcount.getValue());
+            if (updateComplete) {
+                Notification.show("Update complete", Notification.Type.TRAY_NOTIFICATION);
+            } else {
+                Notification.show("Problem :(", Notification.Type.ERROR_MESSAGE);
+            }
 
             Notification.show("Edited Account", Notification.Type.TRAY_NOTIFICATION);
             Page.getCurrent().setLocation(IndexUri.logged);

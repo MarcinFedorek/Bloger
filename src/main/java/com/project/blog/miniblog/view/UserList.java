@@ -4,13 +4,11 @@ import com.project.blog.miniblog.model.AppUser.AppUser;
 import com.project.blog.miniblog.service.AppUserService;
 import com.project.blog.miniblog.view.nav.LoggedNav;
 import com.vaadin.data.provider.ListDataProvider;
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.UI;
+import com.vaadin.ui.*;
 
-import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
@@ -34,6 +32,8 @@ public class UserList extends UI {
         String userId = vaadinRequest.getParameter("userId");
         layout.addComponent(loggedNav.navBar("?userId=" + userId));
 
+        CheckBox checkBox = new CheckBox();
+
 
         ListDataProvider<AppUser> dataProvider = new ListDataProvider<>(appUserService.getUserList());
         Grid<AppUser> grid = new Grid<>();
@@ -45,6 +45,7 @@ public class UserList extends UI {
         grid.addColumn(AppUser::getAccountStatus).setId("Status").setCaption("Status");
 
 
+
         Button buttonRemove = new Button("Remove");
         //todo narazie nie działa trzeba to zrobić usuwanie!! ;p
         //data provider jest do odswieżenia widoku
@@ -54,6 +55,7 @@ public class UserList extends UI {
                 appUserService.unregister(selectedItem.getId());
             }
             grid.setDataProvider(dataProvider);
+            Page.getCurrent().open( IndexUri.userList+ "?userId=" + userId,null);
         });
 
         layout.addComponent(grid);
