@@ -20,10 +20,14 @@ public class UserList extends UI {
 
     @Autowired
     private AppUserService appUserService;
+
     @Autowired
     public UserList(AppUserService appUserService) {
         this.appUserService = appUserService;
     }
+
+    @Autowired
+    WallGui wallGui;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
@@ -31,8 +35,6 @@ public class UserList extends UI {
 
         String userId = vaadinRequest.getParameter("userId");
         layout.addComponent(loggedNav.navBar("?userId=" + userId));
-
-        CheckBox checkBox = new CheckBox();
 
 
         ListDataProvider<AppUser> dataProvider = new ListDataProvider<>(appUserService.getUserList());
@@ -44,24 +46,19 @@ public class UserList extends UI {
         grid.addColumn(AppUser::getSurname).setId("Surname").setCaption("Surname");
         grid.addColumn(AppUser::getAccountStatus).setId("Status").setCaption("Status");
 
-
-
         Button buttonRemove = new Button("Remove");
-        //todo narazie nie działa trzeba to zrobić usuwanie!! ;p
-        //data provider jest do odswieżenia widoku
+
         buttonRemove.addClickListener(event -> {
             Set<AppUser> selectedItems = grid.getSelectedItems();
             for (AppUser selectedItem : selectedItems) {
                 appUserService.unregister(selectedItem.getId());
             }
             grid.setDataProvider(dataProvider);
-            Page.getCurrent().open( IndexUri.userList+ "?userId=" + userId,null);
+            Page.getCurrent().open(IndexUri.userList + "?userId=" + userId, null);
         });
-
+        layout.addComponent(wallGui.getvLayout());
         layout.addComponent(grid);
-layout.addComponent(buttonRemove);
+        layout.addComponent(buttonRemove);
         setContent(layout);
-
-
     }
 }

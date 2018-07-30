@@ -1,15 +1,11 @@
 package com.project.blog.miniblog.service;
 
-import com.project.blog.miniblog.model.dto.postDto.*;
 import com.project.blog.miniblog.model.postUser.PostUser;
 import com.project.blog.miniblog.repository.PostUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class PostUserService {
@@ -17,46 +13,39 @@ public class PostUserService {
     @Autowired
     private PostUserRepository postUserRepository;
 
-    public Optional<PostUser> addPost(AddPostDto dto) {
-        PostUser post = new PostUser(dto.getTitle(),
-                dto.getText(),
-                dto.getLocalDateTime());
+    public Optional<PostUser> addPost(PostUser postUser) {
+        postUser.getTitle();
+        postUser.getText();
 
-        post = postUserRepository.save(post);
+        postUser = postUserRepository.save(postUser);
 
-        return Optional.of(post);
+        return Optional.of(postUser);
+    }
+
+    public List<PostUser> getPostList() {
+        return postUserRepository.findAll();
 
 
     }
 
 
-    public List<PostDto> getPostList() {
-        List<PostUser> list = postUserRepository.findAll();
-
-        return list.stream()
-                .map(postUser -> PostDto.createPostDto(postUser))
-                .collect(Collectors.toList());
-    }
+    public boolean editPost(Long id, String title, String text) {
 
 
-    public Optional<PostUser> editPost(Long id, EditPostDto dto) {
-        Optional<PostUser> searchPost = postUserRepository.findById(id);
+        if (!title.isEmpty()&&text.isEmpty()) {
+            PostUser post = postUserRepository.findById(id).get();
+            post.setTitle(title);
+            post.setText(text);
 
-        if (searchPost.isPresent()) {
-            PostUser post = searchPost.get();
 
-            post.setTitle(dto.getEdited_title());
-            post.setText(dto.getEdited_text());
-            post.setLocalDateTime(LocalDateTime.now());
-            post.setPostStatus(dto.getPostStatus());
 
-            post = postUserRepository.save(post);
-            return Optional.of(post);
+            postUserRepository.save(post);
+            return true;
         }
-        return Optional.empty();
+        return false;
     }
 
-    public Optional<PostUser> deletePost(Long id, UnregisterPost dto) {
+    public Optional<PostUser> deletePost(Long id) {
 
         if (id != null) {
             Optional<PostUser> searchPost = postUserRepository.findById(id);

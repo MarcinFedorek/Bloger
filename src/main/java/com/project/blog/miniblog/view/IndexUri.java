@@ -4,6 +4,7 @@ public interface IndexUri {
 
     String register = "register";
     String logged = "/logged";
+    String loggetPage = "/loggedpage";
     String home = "/";
     String userList = "/userlist";
     String editUser = "/EditUser";
