@@ -9,5 +9,5 @@ public interface IndexUri {
     String userList = "/userlist";
     String editUser = "/EditUser";
     String addText = "/addText";
-    String user = "?userId=";
+    String user = "/user_logged";
 }

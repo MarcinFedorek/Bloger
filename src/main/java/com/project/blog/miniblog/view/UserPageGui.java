@@ -1,38 +1,46 @@
 package com.project.blog.miniblog.view;
 
 
-import com.project.blog.miniblog.repository.AppUserRepository;
-import com.project.blog.miniblog.view.nav.LoggedNav;
+import com.project.blog.miniblog.service.AppUserService;
+
+import com.project.blog.miniblog.view.nav.Navigation;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
+
 @SpringUI(path = IndexUri.user)
 public class UserPageGui extends UI {
 
     @Autowired
-    private LoggedNav loggedNav;
+    private Navigation navigation;
 
-    @Autowired
-    private AppUserRepository appUserRepository;
+
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
 
-        String userId = vaadinRequest.getParameter("userId");
-
-        VerticalLayout components = new VerticalLayout();
-//        components.addComponent(loggedNav.navBar("?userId=" + userId));
 
 
 
+        VerticalLayout layout = new VerticalLayout();
+        layout.addComponent(navigation.navBar());
 
-        Label label = new Label("zalogowany");
-        components.addComponent(label);
+        Panel panel = new Panel("Czy się zajmujemy");
+        panel.setHeight(100.0f, Unit.PERCENTAGE);
+
+        final VerticalLayout contentLayout = new VerticalLayout();
+        contentLayout.setWidth(500, Unit.PIXELS);
+        contentLayout.setSpacing(false);
+        contentLayout.addComponent(new Label("Strona usera"));
+
+        panel.setContent(contentLayout);
+        layout.addComponent(panel);
 
 
-        setContent(components);
+        setContent(layout);
 
 
     }
