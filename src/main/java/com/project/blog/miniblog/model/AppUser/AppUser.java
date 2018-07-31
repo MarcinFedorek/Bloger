@@ -2,45 +2,58 @@ package com.project.blog.miniblog.model.AppUser;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
+
 @Entity
 @AllArgsConstructor
-
+@Data
 public class AppUser implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 
     private String email;
     private String password;
 
-
-    private String name;
+    @Column(name = "username")
+    private String username;
     private String surname;
     private String descriptionAcount;
     private LocalDate dateOfCreateAcount;
     private AccountStatus accountStatus;
     private TypeOfAccount typeOfAccount;
+
+
+    @Column(name = "authorities")
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
 
+
     public AppUser() {
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public AppUser(String email, String password, String name) {
         this.email = email;
         this.password = password;
-        this.name = name;
+        this.username = username;
     }
 
     public Long getId() {
@@ -59,18 +72,22 @@ public class AppUser implements UserDetails {
         this.email = email;
     }
 
+
+
+
+    public void setPassword(String password) {
+
+        this.password = password;
+
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
@@ -90,30 +107,11 @@ public class AppUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true ;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
-
-    public void setPassword(String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassowrd = passwordEncoder.encode(password.trim());
-        this.password = password;
-
-    }
-
-    public String getName() {
-        return name;
+        return true;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = username;
     }
 
     public String getSurname() {
