@@ -3,7 +3,6 @@ package com.project.blog.miniblog.model.AppUser;
 import com.project.blog.miniblog.model.postUser.PostUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -122,4 +121,6 @@ public class AppUser {
     public void setTypeOfAccount(TypeOfAccount typeOfAccount) {
         this.typeOfAccount = typeOfAccount;
     }
+
+
 }

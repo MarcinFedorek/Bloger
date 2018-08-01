@@ -10,4 +10,5 @@ public interface IndexUri {
     String editUser = "/EditUser";
     String addText = "/addText";
     String user = "/user_logged";
+    String postList = "/postList";
 }

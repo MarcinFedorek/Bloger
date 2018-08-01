@@ -1,27 +1,36 @@
 package com.project.blog.miniblog.service;
 
+
 import com.project.blog.miniblog.model.AppUser.AppUser;
+import com.project.blog.miniblog.model.AppUser.TypeOfAccount;
 import com.project.blog.miniblog.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class AppUserService {
 
+    private TypeOfAccount account;
     @Autowired
     private AppUserRepository appUserRepository;
 
     public Long registerUser(String email, String password, String name) {
         if (!email.isEmpty() && !password.isEmpty()) {
             Optional<AppUser> userByEmail = appUserRepository.findByEmail(email);
+            List<TypeOfAccount>accounts = new ArrayList<>();
             if (!userByEmail.isPresent()) {
                 AppUser user = new AppUser();
                 user.setEmail(email);
                 user.setPassword(password);
                 user.setName(name);
+
+
+
                 AppUser savePerson = appUserRepository.save(user);
                 return savePerson.getId();
             }
@@ -38,6 +47,15 @@ public class AppUserService {
     }
 
 
+    public TypeOfAccount getType(){
+        List<TypeOfAccount> lista = Arrays.asList(TypeOfAccount.values());
+        for (int i = 0; i < lista.size(); i++) {
+            return lista.get(i);
+        }
+        return null;
+    }
+
+
     public boolean editUser(Long id, String name, String surname, String description) {
 
         if (!name.isEmpty() && !surname.isEmpty() && !description.isEmpty()) {
@@ -45,6 +63,8 @@ public class AppUserService {
             user.setName(name);
             user.setSurname(surname);
             user.setDescriptionAcount(description);
+
+
 
             appUserRepository.save(user);
             return true;
@@ -105,4 +125,6 @@ public class AppUserService {
     public AppUser getPersonById(Long id){
         return appUserRepository.findById(id).get();
     }
+
+
 }
