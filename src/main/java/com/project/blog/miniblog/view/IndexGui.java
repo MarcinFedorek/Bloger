@@ -15,7 +15,7 @@ public class IndexGui extends UI {
         Label title = new Label("Menu");
         title.addStyleName(ValoTheme.MENU_TITLE);
 
-        Button view = new Button("view", event -> getNavigator().navigateTo("view"));
+        Button view = new Button("login", event -> getNavigator().navigateTo("login"));
         view.addStyleNames(ValoTheme.BUTTON_LINK,ValoTheme.MENU_ITEM);
 
         CssLayout css = new CssLayout(title, view);
@@ -29,7 +29,7 @@ public class IndexGui extends UI {
 
         Navigator navigator = new Navigator(this,viewContent);
         navigator.addView("",DefaultView.class);
-        navigator.addView("view", Viewq.class);
+        navigator.addView("login", Login.class);
 
     }
 }
