@@ -3,6 +3,7 @@ package com.project.blog.miniblog.view;
 import com.project.blog.miniblog.model.AppUser.AppUser;
 import com.project.blog.miniblog.repository.AppUserRepository;
 import com.project.blog.miniblog.service.AppUserService;
+import com.project.blog.miniblog.view.IndexUri;
 import com.project.blog.miniblog.view.nav.Navigation;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;

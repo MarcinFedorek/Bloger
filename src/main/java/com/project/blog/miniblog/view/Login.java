@@ -15,7 +15,7 @@ public class Login extends Composite implements View {
     private AppUserService appUserService;
 
     public Login(){
-//        setCompositionRoot(new Label("This is view q"));
+       // setCompositionRoot(new Label("This is view q"));
         VerticalLayout layout = new VerticalLayout();
         TextField email = new TextField("email");
         TextField password = new TextField("password");
