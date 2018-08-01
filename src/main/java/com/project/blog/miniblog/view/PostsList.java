@@ -1,21 +1,28 @@
 package com.project.blog.miniblog.view;
 
+import com.project.blog.miniblog.model.AppUser.AppUser;
 import com.project.blog.miniblog.model.postUser.PostUser;
 import com.project.blog.miniblog.service.PostUserService;
+import com.project.blog.miniblog.view.nav.LoggedNav;
 import com.project.blog.miniblog.view.nav.Navigation;
 import com.vaadin.data.provider.ListDataProvider;
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Set;
+
+
 @SpringUI(path = IndexUri.postList)
 public class PostsList extends UI {
 
     @Autowired
-    private Navigation navigation;
+    private LoggedNav loggedNav;
 
     @Autowired
     private PostUserService postUserService;
@@ -31,7 +38,7 @@ public class PostsList extends UI {
         VerticalLayout layout = new VerticalLayout();
 
         String userId = vaadinRequest.getParameter("userId");
-        layout.addComponent(navigation.navBar());
+        layout.addComponent(loggedNav.navBar("?userId=" + userId));
 
 
 
@@ -39,12 +46,29 @@ public class PostsList extends UI {
         Grid<PostUser> grid = new Grid<>();
         grid.setDataProvider(dataProvider);
 
+
+
+
         grid.addColumn(PostUser::getId).setCaption("Id");
         grid.addColumn(PostUser::getTitle).setCaption("Title");
         grid.addColumn(PostUser::getText).setCaption("Text");
 
 
+        Button buttonRemove = new Button("Remove");
+
+        buttonRemove.addClickListener(event -> {
+            Set<PostUser> selectedItems = grid.getSelectedItems();
+            for (PostUser selectedItem : selectedItems) {
+                postUserService.deletePost(selectedItem.getId());
+            }
+            grid.setDataProvider(dataProvider);
+            Page.getCurrent().open(IndexUri.postList + "?userId=" + userId, null);
+        });
+
+
+
         layout.addComponent(grid);
+        layout.addComponent(buttonRemove);
         setContent(layout);
 
     }

@@ -10,6 +10,9 @@ import com.vaadin.ui.themes.ValoTheme;
 
 @SpringUI(path = "/in")
 public class IndexGui extends UI {
+
+
+
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         Label title = new Label("Menu");
@@ -30,6 +33,7 @@ public class IndexGui extends UI {
         Navigator navigator = new Navigator(this,viewContent);
         navigator.addView("",DefaultView.class);
         navigator.addView("login", Login.class);
+
 
     }
 }
