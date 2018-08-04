@@ -24,15 +24,15 @@ public class WallGui extends Grid {
         //layout.addComponent(loggedNav.navBar("id"));
 
 
+//
+//        ListDataProvider<PostUser> dataProvider = new ListDataProvider<>(postUserService.getPostList());
+//        Grid<PostUser> grid = new Grid<>();
+//        grid.setDataProvider(dataProvider);
+//        grid.addColumn(PostUser::getTitle).setId("Title").setCaption("Title");
+//        grid.addColumn(PostUser::getText).setCaption("Text");
 
-        ListDataProvider<PostUser> dataProvider = new ListDataProvider<>(postUserService.getPostList());
-        Grid<PostUser> grid = new Grid<>();
-        grid.setDataProvider(dataProvider);
-        grid.addColumn(PostUser::getTitle).setId("Title").setCaption("Title");
-        grid.addColumn(PostUser::getText).setCaption("Text");
 
-
-        layout.addComponent(grid);
+//        layout.addComponent(grid);
 
         return layout;
     }

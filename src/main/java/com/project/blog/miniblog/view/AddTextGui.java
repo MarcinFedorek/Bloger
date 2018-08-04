@@ -1,8 +1,10 @@
 package com.project.blog.miniblog.view;
 
+import com.project.blog.miniblog.model.AppUser.AppUser;
 import com.project.blog.miniblog.model.postUser.PostUser;
 import com.project.blog.miniblog.service.AppUserService;
 import com.project.blog.miniblog.service.PostUserService;
+import com.project.blog.miniblog.view.IndexUri;
 import com.project.blog.miniblog.view.nav.LoggedNav;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
@@ -11,6 +13,7 @@ import com.vaadin.ui.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
 
 
 @SpringUI(path = IndexUri.addText)
@@ -39,11 +42,12 @@ public class AddTextGui extends UI {
         Button button = new Button("Add text");
         button.addClickListener(event -> {
 
+
             PostUser postUser = new PostUser();
             postUser.setTitle(title.getValue());
             postUser.setText(textArea.getValue());
             postUserService.addPost(postUser);
-                    Page.getCurrent().open( IndexUri.LOGGEDPAGE + "?userId=",null);
+                    Page.getCurrent().open( IndexUri.postList ,null);
                 }
         );
         layout.addComponent(label);

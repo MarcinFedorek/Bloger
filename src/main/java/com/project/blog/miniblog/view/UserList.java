@@ -46,6 +46,7 @@ public class UserList extends UI {
         grid.addColumn(AppUser::getSurname).setId("Surname").setCaption("Surname");
         grid.addColumn(AppUser::getAccountStatus).setId("Status").setCaption("Status");
 
+
         Button buttonRemove = new Button("Remove");
 
         buttonRemove.addClickListener(event -> {

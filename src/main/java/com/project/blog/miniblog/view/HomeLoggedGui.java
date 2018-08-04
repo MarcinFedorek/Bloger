@@ -1,5 +1,7 @@
 package com.project.blog.miniblog.view;
 
+import com.project.blog.miniblog.view.IndexUri;
+import com.project.blog.miniblog.view.WallGui;
 import com.project.blog.miniblog.view.nav.LoggedNav;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
