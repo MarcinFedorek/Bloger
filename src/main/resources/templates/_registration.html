@@ -1,0 +1,18 @@
+<form th:fragment="registration_form" xmlns:th="http://www.w3.org/1999/xhtml">
+        <div class="form-group">
+            <label for="InputEmail">Email address</label>
+            <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="InputPassword1">Password</label>
+            <input type="password" class="form-control" id="InputPassword1" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="InputPassword1">Password</label>
+            <input type="password" class="form-control" id="InputPassword2" placeholder="Password">
+        </div>
+
+        <button type="submit" class="btn btn-danger">Submit</button>
+    </form>
+
