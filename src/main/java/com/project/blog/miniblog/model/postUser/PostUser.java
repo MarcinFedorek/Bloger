@@ -1,6 +1,6 @@
 package com.project.blog.miniblog.model.postUser;
 
-import com.project.blog.miniblog.model.AppUser.AppUser;
+import com.project.blog.miniblog.model.AppUser.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -22,16 +22,16 @@ public class PostUser {
     private LocalDateTime localDateTime = LocalDateTime.now();
     private PostStatus postStatus;
 
-    public AppUser getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(AppUser user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
     @ManyToOne
-    private AppUser user;
+    private User user;
 
 
     public PostUser() {
