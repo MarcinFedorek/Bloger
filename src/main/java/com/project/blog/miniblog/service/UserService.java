@@ -1,8 +1,8 @@
 package com.project.blog.miniblog.service;
 
 
-import com.project.blog.miniblog.dto.UserRegistrationDto;
 import com.project.blog.miniblog.model.AppUser.User;
+import com.project.blog.miniblog.model.AppUser.dto.UserRegistrationDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 

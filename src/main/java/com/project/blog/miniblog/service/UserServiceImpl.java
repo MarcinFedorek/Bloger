@@ -1,9 +1,9 @@
 package com.project.blog.miniblog.service;
 
 
-import com.project.blog.miniblog.dto.UserRegistrationDto;
 import com.project.blog.miniblog.model.AppUser.Role;
 import com.project.blog.miniblog.model.AppUser.User;
+import com.project.blog.miniblog.model.AppUser.dto.UserRegistrationDto;
 import com.project.blog.miniblog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

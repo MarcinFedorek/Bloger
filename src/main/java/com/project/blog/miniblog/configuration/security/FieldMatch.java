@@ -1,4 +1,4 @@
-package com.project.blog.miniblog.dto;
+package com.project.blog.miniblog.configuration.security;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

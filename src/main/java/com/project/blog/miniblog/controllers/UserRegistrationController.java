@@ -1,7 +1,8 @@
 package com.project.blog.miniblog.controllers;
 
-import com.project.blog.miniblog.dto.UserRegistrationDto;
+
 import com.project.blog.miniblog.model.AppUser.User;
+import com.project.blog.miniblog.model.AppUser.dto.UserRegistrationDto;
 import com.project.blog.miniblog.repository.UserRepository;
 import com.project.blog.miniblog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+
 
 @Controller
 @RequestMapping("/registration")

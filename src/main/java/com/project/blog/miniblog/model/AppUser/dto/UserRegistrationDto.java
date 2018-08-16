@@ -1,6 +1,9 @@
-package com.project.blog.miniblog.dto;
+package com.project.blog.miniblog.model.AppUser.dto;
+
+import com.project.blog.miniblog.configuration.security.FieldMatch;
 
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotNull;
 
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
@@ -8,22 +11,22 @@ import javax.validation.constraints.AssertTrue;
 })
 public class UserRegistrationDto {
 
-
+    @NotNull
     private String firstName;
 
-
+    @NotNull
     private String lastName;
 
-
+    @NotNull
     private String password;
 
-
+    @NotNull
     private String confirmPassword;
 
-
+    @NotNull
     private String email;
 
-
+    @NotNull
     private String confirmEmail;
 
     @AssertTrue
