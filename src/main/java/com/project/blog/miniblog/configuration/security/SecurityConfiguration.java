@@ -22,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(
-                        "/",//frontowe drzwi
+                         "/",// -frontowe drzwi
                         "/registration",
                         "/js/**",
                         "/css/**",
